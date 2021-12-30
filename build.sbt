@@ -21,6 +21,7 @@ libraryDependencies +="org.apache.spark" %% "spark-hive" % sparkVersion % Provid
 //libraryDependencies += "io.circe" %% "circe-parser" % "0.11.2"
 //
 libraryDependencies += "com.datastax.spark" %% "spark-cassandra-connector" % "2.5.2"
+libraryDependencies += "com.fasterxml.jackson.core" % "jackson-core" % "2.13.1"
 //libraryDependencies += "commons-configuration" % "commons-configuration" % "20041012.002804"
 
 // Test
