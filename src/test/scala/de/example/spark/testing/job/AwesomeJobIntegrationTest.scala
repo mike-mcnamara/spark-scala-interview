@@ -40,7 +40,6 @@ class AwesomeJobIntegrationTest
 
   it should "run awesome job with success" in {
     val sourcePath = getClass.getResource("/awesomejob/sourcepath//").toString
-    val destinationPath = path + "/awesomejob/destinationpath/"
     val awesomeService = mock[AwesomeService]
     val schema = StructType(
       List(
@@ -56,7 +55,7 @@ class AwesomeJobIntegrationTest
     )
     when(awesomeService.renameColumnsToLowerCase(schema)).thenReturn(expectedSchema)
 
-    new AwesomeJob(sourcePath, destinationPath, awesomeService).run()
+    new AwesomeJob(sourcePath, awesomeService).run()
 
     val resultDataFrame = sparkSession.read.format("org.apache.spark.sql.cassandra")
       .options(Map( "table" -> "example", "keyspace" -> "testing" )).load()

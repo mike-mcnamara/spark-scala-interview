@@ -22,9 +22,18 @@ import de.example.spark.testing.service.AwesomeService
 import org.apache.spark.sql.SparkSession
 
 
+/**
+ * AwesomeApp is an application that reads a CSV file from S3.
+ * It loads the contents of the CSV in a DataFrame object, which is
+ * a row-based data structure used by Apache Spark. It can be thought of
+ * as a SQL table.
+ *
+ * AwesomeApp retrieves the schema of the table. It then changes all of the
+ * column names so that they are lowercase. It then writes the DataFrame
+ * out to Scylla, which is just some database that can accept a DataFrame as input.
+ */
 object AwesomeApp extends App {
   private val sourcePath = args(0) // "s3a://some/awesome/source/path/"
-  private val destinationPath = args(1) // "s3a://some/awesome/destination/path/"
 
   private implicit val sparkSession: SparkSession = SparkSession
     .builder()
@@ -35,5 +44,5 @@ object AwesomeApp extends App {
 
   private val awesomeService = new AwesomeService
 
-  new AwesomeJob(sourcePath, destinationPath, awesomeService).run()
+  new AwesomeJob(sourcePath, awesomeService).run()
 }
