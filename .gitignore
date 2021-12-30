@@ -38,3 +38,6 @@ metastore_db/
 # Maven
 target
 
+
+data/scylla/
+

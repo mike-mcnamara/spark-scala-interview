@@ -23,7 +23,7 @@ import org.scalatest.matchers.should.Matchers
 
 class AwesomeServiceTest extends AnyFlatSpec with Matchers  {
 
-  it should "rename columns to upper case" in {
+  it should "rename columns to lower case" in {
     val awesomeService = new AwesomeService
     val someSchema = StructType(
       Array(
@@ -46,18 +46,18 @@ class AwesomeServiceTest extends AnyFlatSpec with Matchers  {
     val expectedSchema = StructType(
       Array(
         StructField(
-          "LEVEL1COLUMNA",
+          "level1columna",
           StructType(
             Array(
               StructField(
-                "LEVEL2COLUMNA",
+                "level2columna",
                 StructType(
-                  Array(StructField("LEVEL3COLUMNA", StringType))
+                  Array(StructField("level3columna", StringType))
                 )
               ))
           )
         ),
-        StructField("LEVEL1COLUMNB", ArrayType(StringType))
+        StructField("level1columnb", ArrayType(StringType))
       )
     )
 

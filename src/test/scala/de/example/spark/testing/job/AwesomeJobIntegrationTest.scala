@@ -44,21 +44,22 @@ class AwesomeJobIntegrationTest
     val awesomeService = mock[AwesomeService]
     val schema = StructType(
       List(
-        StructField("name", StringType),
-        StructField("surname", StringType)
+        StructField("NAME", StringType),
+        StructField("SURNAME", StringType)
       )
     )
     val expectedSchema = StructType(
       List(
-        StructField("NAME", StringType),
-        StructField("SURNAME", StringType)
+        StructField("name", StringType),
+        StructField("surname", StringType)
       )
     )
     when(awesomeService.renameColumnsToLowerCase(schema)).thenReturn(expectedSchema)
 
     new AwesomeJob(sourcePath, destinationPath, awesomeService).run()
 
-    val resultDataFrame = sparkSession.sql("SELECT * FROM testing.example")
+    val resultDataFrame = sparkSession.read.format("org.apache.spark.sql.cassandra")
+      .options(Map( "table" -> "example", "keyspace" -> "testing" )).load()
     val expectedDataFrame = createExpectedDataFrame
 
     verify(awesomeService, times(wantedNumberOfInvocations = 1)).renameColumnsToLowerCase(schema)
