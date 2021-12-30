@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  scylla:
+    image: scylladb/scylla:latest
+    networks:
+      - scylla
+    volumes:
+      - ./data/scylla:/var/lib/scylla
+    ports:
+      - "9042:9042"
+    command: "--smp 1 --memory 2048M"
+
+networks:
+  scylla:
