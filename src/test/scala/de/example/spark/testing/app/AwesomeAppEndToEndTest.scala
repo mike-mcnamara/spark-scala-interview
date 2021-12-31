@@ -52,7 +52,7 @@ class AwesomeAppEndToEndTest extends SharedSparkSessionHelper with DataFrameSuit
         )),
       StructType(
         List(
-          StructField("name", StringType),
+          StructField("name", StringType, false),
           StructField("surname", StringType)
         )
       )

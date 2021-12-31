@@ -74,8 +74,8 @@ class AwesomeJobIntegrationTest
         )),
       StructType(
         List(
-          StructField("NAME", StringType),
-          StructField("SURNAME", StringType)
+          StructField("name", StringType, false),
+          StructField("surname", StringType)
         )
       )
     )
