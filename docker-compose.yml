@@ -9,7 +9,7 @@ services:
       - ./data/scylla:/var/lib/scylla
     ports:
       - "9042:9042"
-    command: "--smp 1 --memory 2048M"
+    command: "--smp 1 --memory 512M"
 
 networks:
   scylla:
